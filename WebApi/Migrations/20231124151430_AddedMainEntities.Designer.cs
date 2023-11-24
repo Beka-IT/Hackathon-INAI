@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebApi;
 
@@ -10,27 +11,13 @@ using WebApi;
 namespace WebApi.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231124151430_AddedMainEntities")]
+    partial class AddedMainEntities
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "6.0.0");
-
-            modelBuilder.Entity("DepartmentOperationType", b =>
-                {
-                    b.Property<int>("DepartmentsId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("OperationsId")
-                        .HasColumnType("INTEGER");
-
-                    b.HasKey("DepartmentsId", "OperationsId");
-
-                    b.HasIndex("OperationsId");
-
-                    b.ToTable("DepartmentOperationType");
-                });
 
             modelBuilder.Entity("WebApi.Entities.Branch", b =>
                 {
@@ -66,6 +53,9 @@ namespace WebApi.Migrations
                     b.Property<int>("BranchId")
                         .HasColumnType("INTEGER");
 
+                    b.Property<int>("OperationTypeId")
+                        .HasColumnType("INTEGER");
+
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasColumnType("TEXT");
@@ -75,27 +65,6 @@ namespace WebApi.Migrations
                     b.HasIndex("BranchId");
 
                     b.ToTable("Departments");
-                });
-
-            modelBuilder.Entity("WebApi.Entities.DepartmentOperations", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("DepartmentId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("OperationId")
-                        .HasColumnType("INTEGER");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("DepartmentId");
-
-                    b.HasIndex("OperationId");
-
-                    b.ToTable("DepartmentOperations");
                 });
 
             modelBuilder.Entity("WebApi.Entities.OperationType", b =>
@@ -168,21 +137,6 @@ namespace WebApi.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("DepartmentOperationType", b =>
-                {
-                    b.HasOne("WebApi.Entities.Department", null)
-                        .WithMany()
-                        .HasForeignKey("DepartmentsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("WebApi.Entities.OperationType", null)
-                        .WithMany()
-                        .HasForeignKey("OperationsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("WebApi.Entities.Department", b =>
                 {
                     b.HasOne("WebApi.Entities.Branch", "Branch")
@@ -194,38 +148,9 @@ namespace WebApi.Migrations
                     b.Navigation("Branch");
                 });
 
-            modelBuilder.Entity("WebApi.Entities.DepartmentOperations", b =>
-                {
-                    b.HasOne("WebApi.Entities.Department", "Department")
-                        .WithMany("DepartmentOperations")
-                        .HasForeignKey("DepartmentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("WebApi.Entities.OperationType", "Operation")
-                        .WithMany("DepartmentOperations")
-                        .HasForeignKey("OperationId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Department");
-
-                    b.Navigation("Operation");
-                });
-
             modelBuilder.Entity("WebApi.Entities.Branch", b =>
                 {
                     b.Navigation("Departments");
-                });
-
-            modelBuilder.Entity("WebApi.Entities.Department", b =>
-                {
-                    b.Navigation("DepartmentOperations");
-                });
-
-            modelBuilder.Entity("WebApi.Entities.OperationType", b =>
-                {
-                    b.Navigation("DepartmentOperations");
                 });
 #pragma warning restore 612, 618
         }

@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebApi;
 
@@ -10,22 +11,23 @@ using WebApi;
 namespace WebApi.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231124163751_AddedMainEntities4")]
+    partial class AddedMainEntities4
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "6.0.0");
 
             modelBuilder.Entity("DepartmentOperationType", b =>
                 {
-                    b.Property<int>("DepartmentsId")
+                    b.Property<int>("DepartmentId")
                         .HasColumnType("INTEGER");
 
                     b.Property<int>("OperationsId")
                         .HasColumnType("INTEGER");
 
-                    b.HasKey("DepartmentsId", "OperationsId");
+                    b.HasKey("DepartmentId", "OperationsId");
 
                     b.HasIndex("OperationsId");
 
@@ -172,7 +174,7 @@ namespace WebApi.Migrations
                 {
                     b.HasOne("WebApi.Entities.Department", null)
                         .WithMany()
-                        .HasForeignKey("DepartmentsId")
+                        .HasForeignKey("DepartmentId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

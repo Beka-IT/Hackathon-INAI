@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "E1VYuA/VQh9vmZGHZMn6ILHa4VC9JeH0VDAvD5ZpYxJN4s2TvuHGx8flP6hnDgLlpDeEFJW1lGt1BFDnto4KTQ==",
+  "dgSpecHash": "pPq0mNr+znnfC9m1kziXJ7G5wYWSaW7M1EM3fn7Asgeq9t8clSNy+j+gXwLL8EcBH/wDwKwmO7sTj+yPD+rOew==",
   "success": true,
   "projectFilePath": "C:\\Projects\\hackathon-projects\\Hackathon-INAI\\WebApi\\WebApi.csproj",
   "expectedPackageFiles": [
@@ -25,6 +25,7 @@
     "C:\\Users\\Admin\\.nuget\\packages\\microsoft.extensions.options\\6.0.0\\microsoft.extensions.options.6.0.0.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\microsoft.extensions.primitives\\6.0.0\\microsoft.extensions.primitives.6.0.0.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
+    "C:\\Users\\Admin\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\sqlitepclraw.bundle_e_sqlite3\\2.0.6\\sqlitepclraw.bundle_e_sqlite3.2.0.6.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\sqlitepclraw.core\\2.0.6\\sqlitepclraw.core.2.0.6.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\sqlitepclraw.lib.e_sqlite3\\2.0.6\\sqlitepclraw.lib.e_sqlite3.2.0.6.nupkg.sha512",

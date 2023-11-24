@@ -1,0 +1,12 @@
+INSERT INTO Operations (Title,DurationInMinutes)
+VALUES ('Перевод', 5),('Оплата', 5),('Кредит',20),('Открытие счета',30);
+
+INSERT INTO Branches (Title,Address,Longitude,Latitude)
+VALUES ('Головной офис','Московская, 80/1',42.87713,74.57412),('Центр денежных переводов','Улица Фрунзе, 338',42.88036, 74.61264),('Сберкасса № 033-0-01','Московская 185',42.87210,74.58400),('Октябрьский филиал','Чуй 48',42.87543, 74.64734);
+
+
+INSERT INTO Departments (Title,BranchId)
+VALUES ('Касса №1',1),('Касса №1',1),('Операционка №1',1),('Операционка №2',1);
+
+INSERT INTO DepartmentOperations ( DepartmentId,OperationId)
+VALUES (1,2),(2,2),(3,1),(3,4),(4,1),(4,4);
