@@ -7,7 +7,7 @@ namespace WebApi.Controllers
 {
     [Route("api/[controller]/[action]")]
     [ApiController]
-    public class BranchesController
+    public class BranchesController : ControllerBase
     {
         private readonly AppDbContext _db;
 
@@ -26,11 +26,21 @@ namespace WebApi.Controllers
                 Address = x.Address,
                 Latitude = x.Latitude,
                 Longitude = x.Longitude,
+                Number = x.Number,
             }).ToList();
             
             for(int i = 0; i < branches.Count; i++)
             {
-                branches[i].Departments = _db.Departments.Where(x => x.BranchId == branches[i].Id).ToList();
+                branches[i].Departments = _db.Departments.Where(x => x.BranchId == branches[i].Id)
+                    .Select(x => new DepartmentResponse { 
+                        Id = x.Id,
+                        Title = x.Title,
+                        BranchId = x.BranchId,
+                        SpecialistId = x.SpecialistId,
+                        Specialist = _db.Users.FirstOrDefault(u => u.Id == x.SpecialistId)
+                    })
+                    .ToList();
+
                 branches[i].AllowedOperations = _db.DepartmentOperations
                     .Where(x => branches[i].Departments.Select(x => x.Id).Contains(x.DepartmentId))
                     .Select(x => x.Operation).ToHashSet().ToList();

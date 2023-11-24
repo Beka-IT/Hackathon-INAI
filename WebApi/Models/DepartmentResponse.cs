@@ -1,8 +1,8 @@
-﻿using System.Reflection.Metadata;
+﻿using WebApi.Entities;
 
-namespace WebApi.Entities
+namespace WebApi.Models
 {
-    public class Department
+    public class DepartmentResponse
     {
         public int Id { get; set; }
         public string Title { get; set; }
@@ -11,6 +11,6 @@ namespace WebApi.Entities
         public List<DepartmentOperations> DepartmentOperations { get; } = new();
         public List<OperationType> Operations { get; } = new();
         public int SpecialistId { get; set; }
-
+        public User Specialist { get; set; }
     }
 }

@@ -1,13 +1,10 @@
-﻿namespace WebApi.Entities
+﻿namespace WebApi.Models
 {
-    public class Queue
+    public class CreateQueueResponse
     {
-        public int Id { get; set; }
         public DateTime StartDate { get; set; }
-        public DateTime EndDate { get; set; }
         public int ClientId { get; set; }
         public int DepartmentId { get; set; }
         public int OperationId { get; set; }
-        public int ENumber { get; set; }
     }
 }

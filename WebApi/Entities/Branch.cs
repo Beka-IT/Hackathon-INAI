@@ -9,6 +9,7 @@ namespace WebApi.Entities
         public string Address { get; set; }
         public double Longitude { get; set; }
         public double Latitude { get; set; }
+        public string Number { get; set; }
         public ICollection<Department> Departments { get; } = new List<Department>();
     }
 }

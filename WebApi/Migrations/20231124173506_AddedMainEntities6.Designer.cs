@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebApi;
 
@@ -10,9 +11,10 @@ using WebApi;
 namespace WebApi.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231124173506_AddedMainEntities6")]
+    partial class AddedMainEntities6
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "6.0.0");
@@ -48,10 +50,6 @@ namespace WebApi.Migrations
                     b.Property<double>("Longitude")
                         .HasColumnType("REAL");
 
-                    b.Property<string>("Number")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasColumnType("TEXT");
@@ -68,9 +66,6 @@ namespace WebApi.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<int>("BranchId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("SpecialistId")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Title")
@@ -135,9 +130,6 @@ namespace WebApi.Migrations
                     b.Property<int>("DepartmentId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("ENumber")
-                        .HasColumnType("INTEGER");
-
                     b.Property<DateTime>("EndDate")
                         .HasColumnType("TEXT");
 
@@ -156,9 +148,6 @@ namespace WebApi.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int?>("DepartmentId")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Fullname")
