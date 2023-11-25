@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.FileProviders;
 using WebApi;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -34,6 +35,12 @@ app.UseCors(x => x
     .SetIsOriginAllowed(origin => true) // allow any origin
     .AllowCredentials());
 
+app.UseStaticFiles(new StaticFileOptions
+{
+    FileProvider = new PhysicalFileProvider(
+           Path.Combine(builder.Environment.ContentRootPath, "./wwwroot")),
+    RequestPath = "/StaticFiles"
+});
 app.UseHttpsRedirection();
 
 app.UseAuthorization();

@@ -22,6 +22,17 @@ namespace WebApi.Controllers
             return _db.Queues.Where(x => x.EndDate >= DateTime.Now && x.DepartmentId == departmentId).ToList();
         }
 
+        [HttpGet]
+        public int GetByPin(string pin, int depId)
+        {
+            var user = _db.Users.FirstOrDefault(x => x.Pin == pin);
+
+            if (user == null) return -1; 
+            
+            return _db.Queues.FirstOrDefault(x => x.ClientId == user.Id && x.DepartmentId == depId).ENumber;
+
+        }
+
         [HttpPost]
         public IActionResult Add(CreateQueueResponse req)
         {

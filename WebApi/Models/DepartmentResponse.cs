@@ -9,7 +9,7 @@ namespace WebApi.Models
         public int BranchId { get; set; }
         public Branch Branch { get; set; } = null!;
         public List<DepartmentOperations> DepartmentOperations { get; } = new();
-        public List<OperationType> Operations { get; } = new();
+        public List<int> OperationIds { get; set; } = new();
         public int SpecialistId { get; set; }
         public User Specialist { get; set; }
     }

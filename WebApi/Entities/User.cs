@@ -11,6 +11,6 @@ namespace WebApi.Entities
         [JsonIgnore]
         public string Password { get; set; }
         public RoleType Role { get; set; }
-        public int? DepartmentId { get; set; }
+        public int DepartmentId { get; set; }
     }
 }
