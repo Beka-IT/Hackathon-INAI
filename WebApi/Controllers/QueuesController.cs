@@ -80,5 +80,13 @@ namespace WebApi.Controllers
             _db.SaveChanges();
             return Ok();
         }
+
+        [HttpGet]
+        public void FinishQueue(int queueId)
+        {
+            var queue = _db.Queues.FirstOrDefault(x => x.Id == queueId);
+            queue.EndDate = DateTime.Now;
+            _db.SaveChanges();
+        }
     }
 }
