@@ -1,4 +1,6 @@
-﻿namespace WebApi.Entities
+﻿using WebApi.Enums;
+
+namespace WebApi.Entities
 {
     public class Queue
     {
@@ -9,5 +11,6 @@
         public int DepartmentId { get; set; }
         public int OperationId { get; set; }
         public int ENumber { get; set; }
+        public QueueStatus Status { get; set; }
     }
 }

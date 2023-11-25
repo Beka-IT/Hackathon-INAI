@@ -43,7 +43,8 @@ namespace WebApi.Controllers
                 OperationId = req.OperationId,
                 DepartmentId = req.DepartmentId,
                 StartDate = req.StartDate,
-                EndDate = req.StartDate.AddMinutes(operation.DurationInMinutes)
+                EndDate = req.StartDate.AddMinutes(operation.DurationInMinutes),
+                Status = Enums.QueueStatus.Planned
             };
 
             if (queue.EndDate.Hour >= TimeConstants.EndOfWorkDay)
@@ -82,9 +83,38 @@ namespace WebApi.Controllers
         }
 
         [HttpGet]
+        public void Start(int queueId)
+        {
+            var queue = _db.Queues.FirstOrDefault(x => x.Id == queueId);
+            queue.Status = Enums.QueueStatus.InProgress;
+            _db.SaveChanges();
+        }
+
+        [HttpGet]
+        public void Delay(int queueId)
+        {
+            var queue = _db.Queues.FirstOrDefault(x => x.Id == queueId);
+            queue.Status = Enums.QueueStatus.Delayed;
+            _db.SaveChanges();
+            var queues = _db.Queues.Where(x => x.DepartmentId == queue.DepartmentId).ToList();
+            var otherDepartment = _db.Departments.FirstOrDefault(x => x.Id != queue.DepartmentId);
+            var operation = _db.Operations.FirstOrDefault(x => x.Id == queue.OperationId).DurationInMinutes;
+
+            for(int i = queues.IndexOf(queue); i < queues.Count; i++)
+            {
+                queues[i].StartDate = DateTime.Now;
+                queues[i].EndDate = queues[i].StartDate.AddMinutes(operation);
+                queue.DepartmentId = otherDepartment.Id;
+                _db.SaveChanges();
+                break;
+            }
+        }
+
+        [HttpGet]
         public void FinishQueue(int queueId)
         {
             var queue = _db.Queues.FirstOrDefault(x => x.Id == queueId);
+            queue.Status = Enums.QueueStatus.Finished;
             queue.EndDate = DateTime.Now;
             _db.SaveChanges();
         }
