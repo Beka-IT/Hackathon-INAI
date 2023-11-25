@@ -21,17 +21,24 @@ namespace WebApi.BackgroundServices
                 using (var scope = serviceScopeFactory.CreateScope())
                 {
                     var dbContext = scope.ServiceProvider.GetService<AppDbContext>();
+                    var tgbot = scope.ServiceProvider.GetService<TelegramBotService>();
                     var queues = dbContext.Queues.ToList();
                     foreach (var queue in queues)
                     {
                         if ((DateTime.Now - queue.StartDate).TotalMinutes == WaitTimeInMinutes)
                         {
                             queue.Status = Enums.QueueStatus.Skipped;
+                            var skippedUser = dbContext.Users.FirstOrDefault(x => x.Id == queue.ClientId);
                             int freeMinutes = (queue.EndDate - DateTime.Now).Minutes;
                             var queuesToRedirect = dbContext.Queues
-                                .Where(x => x.OperationId == queue.OperationId 
+                                .FirstOrDefault(x => x.OperationId == queue.OperationId 
                                 && x.Status == (int)(Enums.QueueStatus.Planned)
                                 && (x.EndDate-x.StartDate).Minutes<=freeMinutes);
+
+                            var candidateToRedirect = dbContext.Users.FirstOrDefault(x => x.Id == queuesToRedirect.ClientId);
+
+                            tgbot.SendMessage($"Уважаемый, {skippedUser.Fullname}! Вы пропустили свою очередь!");
+                            tgbot.SendMessage($"Уважаемый, {candidateToRedirect.Fullname}! Вас перенаправили к другому сотруднику!");
                             dbContext.SaveChanges();
                         }
                     }

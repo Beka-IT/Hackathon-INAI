@@ -10,10 +10,12 @@ namespace WebApi.Controllers
     public class QueuesController : ControllerBase
     {
         private readonly AppDbContext _db;
+        private readonly TelegramBotService _tgBot;
 
-        public QueuesController(AppDbContext context)
+        public QueuesController(AppDbContext context, TelegramBotService tgBot)
         {
             _db = context;
+            _tgBot = tgBot;
         }
 
         [HttpGet]
@@ -104,8 +106,10 @@ namespace WebApi.Controllers
             {
                 queues[i].StartDate = DateTime.Now;
                 queues[i].EndDate = queues[i].StartDate.AddMinutes(operation);
+                var user = _db.Users.FirstOrDefault(x => x.Id == queues[i].ClientId);
                 queue.DepartmentId = otherDepartment.Id;
                 _db.SaveChanges();
+                _tgBot.SendMessage($"Уважаемый, {user.Fullname}! Просим прощения за заддержку! Мы вас перенаправили к другому сотруднику.\\n Отдел: {otherDepartment.Title}. C {queues[i].StartDate} по {queues[i].EndDate}");
                 break;
             }
         }

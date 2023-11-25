@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "pPq0mNr+znnfC9m1kziXJ7G5wYWSaW7M1EM3fn7Asgeq9t8clSNy+j+gXwLL8EcBH/wDwKwmO7sTj+yPD+rOew==",
+  "dgSpecHash": "AWmgjpsNVLAvtpGI7dGdFclRMQTixjbyN0GCCWm2nz2FCB+NL3ZGvggLpRnBEbJteNxqjoCmhoeqRQs4EHpOHw==",
   "success": true,
   "projectFilePath": "C:\\Projects\\hackathon-projects\\Hackathon-INAI\\WebApi\\WebApi.csproj",
   "expectedPackageFiles": [
@@ -40,7 +40,8 @@
     "C:\\Users\\Admin\\.nuget\\packages\\system.memory\\4.5.4\\system.memory.4.5.4.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\system.text.encodings.web\\6.0.0\\system.text.encodings.web.6.0.0.nupkg.sha512",
-    "C:\\Users\\Admin\\.nuget\\packages\\system.text.json\\6.0.0\\system.text.json.6.0.0.nupkg.sha512"
+    "C:\\Users\\Admin\\.nuget\\packages\\system.text.json\\6.0.0\\system.text.json.6.0.0.nupkg.sha512",
+    "C:\\Users\\Admin\\.nuget\\packages\\telegram.bot\\19.0.0\\telegram.bot.19.0.0.nupkg.sha512"
   ],
   "logs": []
 }
